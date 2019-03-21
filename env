@@ -1,0 +1,94 @@
+APP_NAME=Terminall
+APP_ENV=local
+APP_KEY=base64:5GsiXn4qXuzyjNkmmERzwV9aG2JcnpctI5anbRY+X94=
+APP_DEBUG=true
+APP_URL=https://terminall-test1.curd.codiv.io/
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=terminall
+DB_USERNAME=terminall
+DB_PASSWORD=Pass4631038
+
+BROADCAST_DRIVER=log
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=60
+
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME='2e1252c2d440c1'
+MAIL_PASSWORD='7c2c392f6e3d54'
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=mail_from@addr
+MAIL_FROM_NAME='Terminal Bot'
+
+ITEMS_PER_PAGE=20
+# hours
+HOLD_TIME=1
+
+# time in minutes
+PAYMENT_EXPIRATION_TIMEOUT_USER=5
+PAYMENT_EXPIRATION_TIMEOUT_SYSTEM_CALLBACK=10
+PAYMENT_EXPIRATION_TIMEOUT_CRYPTOPAYMENT_USER=10
+# time in days
+LOGS_LIFETIME=10
+
+CRATES_URL=https://api.crates.biz/api/v1/rates
+CRATES_API_KEY=8pDaRqtJP6ljsrFkRCcwkrgMv809nNvsNCfR2TwUKYykHaY1RzIFfRcJrl0x
+CRATES_CURRENCY_LIST='USD, BTC'
+
+# список поддерживаемых криптовалют в системе (без учета ERC20 токенов)
+CRYPTOCURRENCY_LIST='bitcoin, ethereum'
+
+# задайте блок и хеш этого блока, с котого система будет начинать обработку транзакций, как указано ниже.
+BITCOIN_FIRST_BLOCK=1483243
+BITCOIN_FIRST_BLOCK_HASH=000000000000002ca7e1dc34e8bb41fee228aa6c79fb674d5fa186d608317ab6
+# Terminall bitcoin wallet
+BITCOIN_WALLET=2MtRYDK9iJAaHFZ2VEq9m9qr8gLouS2UkR1
+# указывать в BTC
+BITCOIN_FEE_STATIC=0.00002
+# указывать в BTC
+BITCOIN_FEE_PER_UTXO=0.000001
+# указывать в минутах
+BITCOIN_WITHDRAWAL_CHECK_TIME=60
+BITCOIN_CODE=BTC
+BITCOIN_SCHEME=http
+BITCOIN_HOST=node-btctest1.cudc.codiv.io
+BITCOIN_PORT=18332
+BITCOIN_USER=btccoinrpc
+BITCOIN_PASSWORD=GmtuO3pipxBsi2cYZdzS2z8KAjoU1VQ8
+
+# задайте блок и хеш этого блока, с котого система будет начинать обработку транзакций, как указано ниже.
+ETHEREUM_FIRST_BLOCK=10477394
+ETHEREUM_FIRST_BLOCK_HASH=0x0e4acf88204e40cfae7ca169c3609f29b780d8c05358c82c03b8c94c7fa76ef2
+ETHEREUM_HOST=node-ethtest1.cudc.codiv.io
+ETHEREUM_PORT=18545
+ETHEREUM_ACCOUNT_SALT=
+# reward bitcoin wallet
+ETHEREUM_WALLET=0xf6e29988a6f20104ac92619aa1bb49032746a609
+# указывать в GWei
+ETHEREUM_WITHDRAWAL_GAS=21000
+# указывать в GWei
+ETHEREUM_WITHDRAWAL_GAS_PRICE=10
+# указывать в минутах
+ETHEREUM_WITHDRAWAL_CHECK_TIME=60
+ETHEREUM_CODE=ETH
+
+# указывать в процентах
+WITHDRAW_FEE_PERCENT=0.1
+# указывать в USD (с учетом процента)
+WITHDRAW_MIN_LIMIT=0.01
+# период запуска скрипта для вывода средств с криптокошельков(everythirtyminutes, hourly, daily, weekly)
+CRYPTO_WITHDRAWAL_TIME=hourly
+
+CAPTCHA_SECRET=6Lcv0IoUAAAAAP9Dbac0PY16rhWjNjKXgWV_rAqH
+CAPTCHA_SITEKEY=6Lcv0IoUAAAAAKm0UVPadaDjclzFW7GCxf7zigPu
+
+GOOGLE_CLIENT_ID=108608564850-utp44670ugqgdrcbbo7qugmr78dtcuil.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=NMWI4oGYqqC6CHbiy9OVcW3m
+GOOGLE_REDIRECT=https://terminall-test1.curd.codiv.io/google/callback
+
+DEFAULT_COUNTRY=Ukraine
