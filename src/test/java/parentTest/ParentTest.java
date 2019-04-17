@@ -21,10 +21,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import pages.EditSparePage;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.SparePage;
+import pages.FirstPage;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -37,10 +34,8 @@ public class ParentTest {
 
     Logger logger = Logger.getLogger(getClass());
 
-    protected LoginPage loginPage;
-    protected HomePage homePage;
-    protected SparePage sparePage;
-    protected EditSparePage editSparePage;
+    protected FirstPage firstPage;
+
     Logger log = Logger.getLogger(getClass());
     String browser = System.getProperty("browser");
 
@@ -51,16 +46,12 @@ public class ParentTest {
         initDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        loginPage = new LoginPage(webDriver);
-        homePage = new HomePage(webDriver);
-        sparePage = new SparePage(webDriver);
-        editSparePage = new EditSparePage(webDriver);
+        firstPage = new FirstPage(webDriver);
     }
 
 
     @After
     public void tearDown() {
-//        webDriver.quit();
     }
 
     @Step
@@ -115,7 +106,6 @@ public class ParentTest {
             profile.addPreference("browser.startup.page", 0);
             profile.addPreference("browser.startup.homepage_override.mstone"
                     , "ignore"); // Suppress the "What's new" page
-
 
             webDriver = new FirefoxDriver();
         } else if ("iedriver".equals(browser)) {
