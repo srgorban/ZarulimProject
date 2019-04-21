@@ -13,12 +13,11 @@ public class ActionsWithOurElements {
 
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
-    WebDriverWait wait10, wait15;
+    WebDriverWait wait10;
 
     public ActionsWithOurElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         wait10 = new WebDriverWait(webDriver, 10);
-        wait15 = new WebDriverWait(webDriver, 15);
     }
 
     public void enterTextIntoElement(WebElement element, String text) {
@@ -32,8 +31,8 @@ public class ActionsWithOurElements {
     }
 
     private void printErrorAndStopTest(Exception e) {
-        logger.error("Cannot work with element " + e);
-        Assert.fail("Cannot work with element " + e);
+        logger.error("Can't work with element " + e);
+        Assert.fail("Can't work with element " + e);
     }
 
     public void clickOnElement(WebElement element) {
