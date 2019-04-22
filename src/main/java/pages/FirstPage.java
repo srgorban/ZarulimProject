@@ -30,6 +30,47 @@ public class FirstPage extends ParentPage {
     @FindBy(xpath = ".//button[@type='button' and @class='close']")
     private WebElement closeButtonModalWindowAuth;
 
+    @FindBy(xpath = ".//input[@id='login_name']")
+    private WebElement inputLogin;
+
+    @FindBy(xpath = ".//input[@id='login_password']")
+    private WebElement inputPass;
+
+    @FindBy(xpath = "//*[@id=\"modal-login\"]/div/div/div[2]/div/form/div[1]/button")
+    private WebElement button;
+
+    @FindBy(xpath = "//*[@id=\"modal-login\"]/div/div/div[2]/div[1]/a/img")
+    private WebElement avatar;
+
+    @Step
+    public void enterTextInToInputLogin(String login) {
+        actionsWithOurElements.enterTextIntoElement(inputLogin, login);
+    }
+
+    @Step
+    public void enterTextInToInputPass(String pass) {
+        actionsWithOurElements.enterTextIntoElement(inputPass, pass);
+    }
+
+    @Step
+    public void clickOnButtonSubmit() {
+        actionsWithOurElements.clickOnElement(button);
+    }
+
+    @Step
+    public boolean isLogoPresent() {
+        return actionsWithOurElements.isElementPresent(logo);
+    }
+
+    @Step
+    public boolean isModalWindowPresent() {
+        return actionsWithOurElements.isElementPresent(modalWindowAuthOpened);
+    }
+
+    @Step
+    public boolean isAvatarPresent() {
+        return actionsWithOurElements.isElementPresent(avatar);
+    }
 
     @Step
     public void openFirstPage() {
@@ -40,14 +81,7 @@ public class FirstPage extends ParentPage {
             logger.info("Can't open first page to site Zarulim " + e);
             Assert.fail("Can't open first page to site Zarulim " + e);
         }
-}
-
-
-
-    @Step
-    public void openModalWindowMyProfile() {
     }
-
 
     @Step
     public void openModalWindowAuth() {
@@ -83,7 +117,6 @@ public class FirstPage extends ParentPage {
         }
     }
 
-
     @Step
     public void logout() {
         try {
@@ -95,49 +128,25 @@ public class FirstPage extends ParentPage {
         }
     }
 
-
     @Step
-    public void Autorization() {
-
+    public void enterEnter() {
+        try {
+            button.click();
+            logger.info("Button 'Enter' was clicked");
+        } catch (Exception e) {
+            logger.info("Smth happened when you click 'Enter' " + e);
+            Assert.fail("Smth happened when you click 'Enter' " + e);
+        }
     }
 
     @Step
-    public void Login() {
-
+    public void login(String login_name, String password) {
+        openFirstPage();
+        openModalWindowAuth();
+        enterTextInToInputLogin(login_name);
+        enterTextInToInputPass(password);
+        enterEnter();
     }
-
-    @Step
-    public void Logout() {
-
-    }
-
-
-    @Step
-    public boolean isLogoPresent() {
-        return actionsWithOurElements.isElementPresent(logo);
-    }
-
-    @Step
-    public boolean isModalWindowPresent() {
-        return actionsWithOurElements.isElementPresent(modalWindowAuthOpened);
-    }
-
-    @Step
-    public boolean isZamokOpenPresent() {
-        return actionsWithOurElements.isElementPresent(zamokOpen);
-    }
-
-    @Step
-    public void clickToEnterOrReg(String login) {
-        actionsWithOurElements.clickOnElement(zamokClosed);
-    }
-
-    @Step
-    public void clickToMyProfile(String login) {
-        actionsWithOurElements.clickOnElement(zamokOpen);
-    }
-
-
 }
 
 

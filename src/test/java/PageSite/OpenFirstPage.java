@@ -1,6 +1,5 @@
 package PageSite;
 
-
 import org.junit.Test;
 import parentTest.ParentTest;
 
@@ -37,12 +36,25 @@ public class OpenFirstPage extends ParentTest {
     }
 
     @Test
-    public void validLogin() {
+    public void enterWithValidLogin() {
         firstPage.openFirstPage();
         firstPage.openModalWindowAuth();
+        firstPage.enterTextInToInputLogin("123");
+        firstPage.enterTextInToInputPass("123456");
+        firstPage.enterEnter();
         checkExpectedResult(
-                "Modal window is present after opening",
-                firstPage.isModalWindowPresent()
+                "Avatar is not present",
+                firstPage.isAvatarPresent()
+        );
+    }
+
+    @Test
+    public void correctLogout() {
+        firstPage.login("superadmin","666666");
+        firstPage.logout();
+        checkExpectedResult(
+                "Avatar is not present",
+                !firstPage.isAvatarPresent()
         );
     }
 
