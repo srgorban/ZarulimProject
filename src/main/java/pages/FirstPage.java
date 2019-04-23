@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class FirstPage extends ParentPage {
-
     public FirstPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -129,23 +128,12 @@ public class FirstPage extends ParentPage {
     }
 
     @Step
-    public void enterEnter() {
-        try {
-            button.click();
-            logger.info("Button 'Enter' was clicked");
-        } catch (Exception e) {
-            logger.info("Smth happened when you click 'Enter' " + e);
-            Assert.fail("Smth happened when you click 'Enter' " + e);
-        }
-    }
-
-    @Step
     public void login(String login_name, String password) {
         openFirstPage();
         openModalWindowAuth();
         enterTextInToInputLogin(login_name);
         enterTextInToInputPass(password);
-        enterEnter();
+        clickOnButtonSubmit();
     }
 }
 

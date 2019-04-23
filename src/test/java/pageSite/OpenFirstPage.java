@@ -1,4 +1,4 @@
-package PageSite;
+package pageSite;
 
 import org.junit.Test;
 import parentTest.ParentTest;
@@ -9,7 +9,7 @@ public class OpenFirstPage extends ParentTest {
     public void openSite() {
         firstPage.openFirstPage();
         checkExpectedResult(
-                "Site is present",
+                "Site is not present",
                 firstPage.isLogoPresent()
         );
     }
@@ -19,7 +19,7 @@ public class OpenFirstPage extends ParentTest {
         firstPage.openFirstPage();
         firstPage.openModalWindowAuth();
         checkExpectedResult(
-                "Modal window is present after opening",
+                "Modal window is not present after opening",
                 firstPage.isModalWindowPresent()
         );
     }
@@ -30,7 +30,7 @@ public class OpenFirstPage extends ParentTest {
         firstPage.openModalWindowAuth();
         firstPage.closeModalWindowAuth();
         checkExpectedResult(
-                "Modal window is not present after closing",
+                "Modal window is present after closing",
                 !firstPage.isModalWindowPresent()
         );
     }
@@ -39,9 +39,9 @@ public class OpenFirstPage extends ParentTest {
     public void enterWithValidLogin() {
         firstPage.openFirstPage();
         firstPage.openModalWindowAuth();
-        firstPage.enterTextInToInputLogin("123");
-        firstPage.enterTextInToInputPass("123456");
-        firstPage.enterEnter();
+        firstPage.enterTextInToInputLogin("superadmin");
+        firstPage.enterTextInToInputPass("666666");
+        firstPage.clickOnButtonSubmit();
         checkExpectedResult(
                 "Avatar is not present",
                 firstPage.isAvatarPresent()
@@ -50,12 +50,11 @@ public class OpenFirstPage extends ParentTest {
 
     @Test
     public void correctLogout() {
-        firstPage.login("superadmin","666666");
+        firstPage.login("superadmin", "666666");
         firstPage.logout();
         checkExpectedResult(
-                "Avatar is not present",
+                "Avatar is present",
                 !firstPage.isAvatarPresent()
         );
     }
-
 }
