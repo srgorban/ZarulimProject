@@ -14,13 +14,13 @@ public class FirstPage extends ParentPage {
     @FindBy(xpath = ".//i[@class='fa fa-lock']")
     private WebElement zamokClosed;
 
-    @FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div/a/span/i")
+    @FindBy(xpath = ".//i[@class='fa fa-unlock']")
     private WebElement zamokOpen;
 
     @FindBy(xpath = ".//a[@class='logo']")
     private WebElement logo;
 
-    @FindBy(xpath = "//*[@id=\"modal-login\"]/div/div/div[3]/ul[2]/li[3]/a")
+    @FindBy(xpath = ".//*[@class='fa fa-times']")
     private WebElement actionLogout;
 
     @FindBy(xpath = ".//div[@id='modal-login' and @style='display: block; padding-right: 17px;' and @class='modal fade in']")
@@ -35,7 +35,7 @@ public class FirstPage extends ParentPage {
     @FindBy(xpath = ".//input[@id='login_password']")
     private WebElement inputPass;
 
-    @FindBy(xpath = "//*[@id=\"modal-login\"]/div/div/div[2]/div/form/div[1]/button/span")
+    @FindBy(xpath = ".//button[@type='submit']")
     private WebElement button;
 
     @Step
