@@ -21,7 +21,7 @@ public class FirstPage extends ParentPage {
     private WebElement logo;
 
     @FindBy(xpath = ".//*[@class='fa fa-times']")
-    private WebElement logOut;
+    private WebElement actionLogout;
 
     @FindBy(xpath = ".//div[@id='modal-login' and @style='display: block; padding-right: 17px;' and @class='modal fade in']")
     private WebElement modalWindowAuthOpened;
@@ -35,11 +35,13 @@ public class FirstPage extends ParentPage {
     @FindBy(xpath = ".//input[@id='login_password']")
     private WebElement inputPass;
 
-    @FindBy(xpath = "//*[@id=\"modal-login\"]/div/div/div[2]/div/form/div[1]/button")
+    @FindBy(xpath = ".//button[@type='submit']")
     private WebElement button;
 
-    @FindBy(xpath = "//*[@id=\"modal-login\"]/div/div/div[2]/div[1]/a/img")
-    private WebElement avatar;
+    @Step
+    public boolean isLogoPresent() {
+        return actionsWithOurElements.isElementPresent(logo);
+    }
 
     @Step
     public void enterTextInToInputLogin(String login) {
@@ -52,13 +54,28 @@ public class FirstPage extends ParentPage {
     }
 
     @Step
-    public void clickOnButtonSubmit() {
+    public void clickButtonLoginSubmit() {
         actionsWithOurElements.clickOnElement(button);
     }
 
     @Step
-    public boolean isLogoPresent() {
-        return actionsWithOurElements.isElementPresent(logo);
+    public void clickActionLogout() {
+        actionsWithOurElements.clickOnElement(actionLogout);
+    }
+
+    @Step
+    public void clickCloseModalWindowAuth() {
+        actionsWithOurElements.clickOnElement(closeButtonModalWindowAuth);
+    }
+
+    @Step
+    public void clickMyProfile() {
+        actionsWithOurElements.clickOnElement(zamokOpen);
+    }
+
+    @Step
+    public void clickLoginRegister() {
+        actionsWithOurElements.clickOnElement(zamokClosed);
     }
 
     @Step
@@ -67,8 +84,13 @@ public class FirstPage extends ParentPage {
     }
 
     @Step
-    public boolean isAvatarPresent() {
-        return actionsWithOurElements.isElementPresent(avatar);
+    public boolean isZamokOpenPresent() {
+        return actionsWithOurElements.isElementPresent(zamokOpen);
+    }
+
+    @Step
+    public boolean isZamokClosedPresent() {
+        return actionsWithOurElements.isElementPresent(zamokClosed);
     }
 
     @Step
@@ -77,8 +99,8 @@ public class FirstPage extends ParentPage {
             webDriver.get("https://zarulim.com.ua");
             logger.info("First page to site 'Zarulim' was opened");
         } catch (Exception e) {
-            logger.info("Can't open first page to site Zarulim " + e);
-            Assert.fail("Can't open first page to site Zarulim " + e);
+            logger.info("Can't open first page to site 'Zarulim' " + e);
+            Assert.fail("Can't open first page to site 'Zarulim' " + e);
         }
     }
 
@@ -87,13 +109,14 @@ public class FirstPage extends ParentPage {
         if (!zamokClosed.isDisplayed()) {
             try {
                 logout();
+                logger.info("Was logout account");
             } catch (Exception e) {
                 logger.info("Smth happened when trying logout " + e);
                 Assert.fail("Smth happened when trying logout " + e);
             }
         } else if (zamokClosed.isDisplayed()) {
             try {
-                zamokClosed.click();
+                clickLoginRegister();
                 logger.info("'Login/Register' was clicked");
             } catch (Exception e) {
                 logger.info("Smth happened when you click 'Login/Register' " + e);
@@ -106,24 +129,50 @@ public class FirstPage extends ParentPage {
     }
 
     @Step
+    public void openModalWindowMyProfile() {
+        if (!zamokOpen.isDisplayed()) {
+            try {
+                login("superadmin", "666666");
+                logger.info("Was login account");
+            } catch (Exception e) {
+                logger.info("Smth happened when trying login " + e);
+                Assert.fail("Smth happened when trying login " + e);
+            }
+        } else if (zamokOpen.isDisplayed()) {
+            try {
+                clickMyProfile();
+                logger.info("'My Profile' was clicked");
+            } catch (Exception e) {
+                logger.info("Smth happened when you click 'My Profile' " + e);
+                Assert.fail("Smth happened when you click 'My Profile' " + e);
+            }
+        } else {
+            logger.error("Smth happened. Can't open the modal window 'Auth' or 'My profile'");
+            Assert.fail("Smth happened. Can't open the modal window 'Auth' or 'My profile'");
+        }
+    }
+
+    @Step
     public void closeModalWindowAuth() {
         try {
-            closeButtonModalWindowAuth.click();
-            logger.info("Button 'X' was clicked");
+            clickCloseModalWindowAuth();
+            logger.info("Was click 'X' in modal window 'Auth'");
         } catch (Exception e) {
-            logger.info("Smth happened when you click 'X' to modal window Auth " + e);
-            Assert.fail("Smth happened when you click 'X' to modal window Auth " + e);
+            logger.info("Smth happened when you click 'X' in modal window 'Auth' " + e);
+            Assert.fail("Smth happened when you click 'X' in modal window 'Auth' " + e);
         }
     }
 
     @Step
     public void logout() {
+        openModalWindowMyProfile();
+        logger.info("Was opened the modal window 'My profile'");
         try {
-            logOut.click();
-            logger.info("Button 'Logout' was clicked");
+            clickActionLogout();
+            logger.info("'Logout' was clicked in modal window 'My Profile'");
         } catch (Exception e) {
-            logger.info("Smth happened when you click 'Logout' " + e);
-            Assert.fail("Smth happened when you click 'Logout' " + e);
+            logger.info("Smth happened when you click 'Logout' in modal window 'My Profile' " + e);
+            Assert.fail("Smth happened when you click 'Logout' in modal window 'My Profile' " + e);
         }
     }
 
@@ -133,8 +182,8 @@ public class FirstPage extends ParentPage {
         openModalWindowAuth();
         enterTextInToInputLogin(login_name);
         enterTextInToInputPass(password);
-        clickOnButtonSubmit();
+        clickButtonLoginSubmit();
+        logger.info("'Login' was clicked in modal window 'Auth'");
     }
 }
-
 

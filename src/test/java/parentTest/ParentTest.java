@@ -52,6 +52,7 @@ public class ParentTest {
 
     @After
     public void tearDown() {
+//        webDriver.quit();
     }
 
     @Step
@@ -108,6 +109,7 @@ public class ParentTest {
                     , "ignore"); // Suppress the "What's new" page
 
             webDriver = new FirefoxDriver();
+
         } else if ("iedriver".equals(browser)) {
             log.info("IE will be started");
             File file1 = new File("./src/drivers/IEDriverServer.exe");
