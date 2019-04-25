@@ -41,10 +41,10 @@ public class OpenFirstPage extends ParentTest {
         firstPage.openModalWindowAuth();
         firstPage.enterTextInToInputLogin("superadmin");
         firstPage.enterTextInToInputPass("666666");
-        firstPage.clickOnButtonSubmit();
+        firstPage.clickButtonLoginSubmit();
         checkExpectedResult(
-                "Avatar is not present",
-                firstPage.isAvatarPresent()
+                "Picture 'Open lock' is not present",
+                firstPage.isZamokOpenPresent()
         );
     }
 
@@ -53,8 +53,8 @@ public class OpenFirstPage extends ParentTest {
         firstPage.login("superadmin", "666666");
         firstPage.logout();
         checkExpectedResult(
-                "Avatar is present",
-                !firstPage.isAvatarPresent()
+                "Picture 'Closed lock' is not present",
+                firstPage.isZamokClosedPresent()
         );
     }
 }
